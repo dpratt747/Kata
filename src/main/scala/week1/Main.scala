@@ -29,8 +29,8 @@ object Main extends App {
   val runLengthEncoding = new RunLengthEncoding
   val test = List('a', 'a', 'a', 'a', 'b', 'c', 'c', 'a', 'a', 'd', 'e', 'e', 'e', 'e')
   val res = runLengthEncoding.toEncode(test)
-//  val res2 = runLengthEncoding.toDecode(res)
-  println(res)
+  val res2 = runLengthEncoding.toDecode(res)
+//  println(res)
 
 
 

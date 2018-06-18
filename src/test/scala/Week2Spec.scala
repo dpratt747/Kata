@@ -15,14 +15,13 @@ class Week2Spec extends WordSpec {
     }
     "RunLengthEncoding" should {
       val rlEncode = new RunLengthEncoding
+      val test = List('a', 'a', 'a', 'a', 'b', 'c', 'c', 'a', 'a', 'd', 'e', 'e', 'e', 'e')
+      val expectedRes: List[(Int, Char)] = List((4, 'a'),(1, 'b'), (2, 'c'), (2, 'a'), (1, 'd'), (4, 'e'))
       "complete run length encoding when passed a Seq" in {
-        val test = List('a', 'a', 'a', 'a', 'b', 'c', 'c', 'a', 'a', 'd', 'e', 'e', 'e', 'e')
-        val expectedRes: List[(Int, Char)] = List((4, 'a'),(1, 'b'), (2, 'c'), (2, 'a'), (1, 'd'), (4, 'e'))
         assert(rlEncode.toEncode(test).equals(expectedRes))
       }
       "complete run length decoding when passed a Seq of any type" in {
-        val testDecode = "e4a6b1c2d1"
-        assert(rlEncode.toDecode(testDecode).equals(List('a', 'a', 'a', 'a', 'b', 'c', 'c', 'a', 'a', 'd', 'e', 'e', 'e', 'e')))
+        assert(rlEncode.toDecode(expectedRes).equals(test))
       }
     }
   }

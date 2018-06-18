@@ -10,7 +10,6 @@ class RunLengthEncoding {
   // sequence of data of the same value type are stroed in a single data value and count, rather than the original sequence
   //
 
-  private def pack[A] = (input: Seq[A]) =>  input.groupBy(identity).values.toList
 
   def toEncode[A](xs: List[A]): List[(Int, A)] = xs match {
     case Nil => Nil
@@ -20,11 +19,9 @@ class RunLengthEncoding {
     }
   }
 
-  def toDecode(input: String): Seq[Char] = {
-    val a = input.split("[0-9]+")
-    val b: Array[Int] = input.split("[A-Z]+|[a-z]+").tail.flatMap(_.map(_.asDigit))
-    val duplicate = (a: String, b: Int) =>  a * b
-    a.zip(b).flatMap{case(item, count) => duplicate(item,count)}
+//    List((4, 'a'),(1, 'b'), (2, 'c'), (2, 'a'), (1, 'd'), (4, 'e'))
+  def toDecode[A](input: List[(Int, A)]): List[Char] = {
+    input.flatMap{case(n, c) => (c.toString * n).toCharArray}
   }
 
 }
